@@ -1,0 +1,75 @@
+<% layout('layout') %>
+
+<div id="wrapper">
+
+    <div id="sidebar-wrapper">
+        <div class="sidebar-brand">
+            <a href="/">Mess App</a>
+        </div>
+
+        <ul class="sidebar-nav">
+            <% if(user.image === "") { %>
+                return <img src="http://placehold.it/100x100">
+             <% } else { %>
+                    return <img src="uploads/<%= user.image %>"
+                <% } %> 
+                class="img-responsive img-circle profile_img" alt="">
+            <div class="profile_info">
+                <span>Welcome,</span>
+                <h2><%=user.fullname%></h2>
+            </div> 
+            <li class="lists"><i class="fa fa-user" ></i>&nbsp;<%=user.gender%></li>
+            <li class="lists"><i class="fa fa-send"></i> &nbsp;<%=user.email%></li>
+
+        </ul>
+    </div>
+
+
+    <div id="page-content-wrapper">
+       <% include nav %>
+        <div class="container-fluid main_body">
+           <h1>Welcome to Mess App</h1>
+           
+           <div class="bodyDiv">
+				
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <% if(data.length > 0) {%>
+                        <% data.forEach(function(val){ %>
+                        
+                            <tr>
+                                <td><%= val.fullname %></td>
+                                <td><a href="/message/<%= val._id %>" class="btn btn-primary">Send Message</a></td>
+                            </tr>
+                        
+                        <% }) %>
+                    <% } else {%>
+                        <tr>
+                            <td><p>No friends</p></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+                 
+             </table>   
+				
+                            </div>
+
+                        </a>
+                    </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+    
+    
+
+
